@@ -1,4 +1,8 @@
-SRC=src/Main.cpp src/ArrayList.cpp 
+CFLAGS=-g -Wall -Wno-sign-compare -std=c++98
+INCLUDE= -I./include
+SRC=test/TestSuite.cpp 
 
-all:
-	g++ -g -Wall -std=c++98 ${SRC} -o Libtest
+.PHONY: test
+test:
+	g++ ${CFLAGS} ${SRC} ${INCLUDE} -o Libtest && ./Libtest
+	rm -f Libtest
