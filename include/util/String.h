@@ -9,7 +9,7 @@ namespace bkstl
         public:
             String(char* str) : c_str_(str) {};
             ~String() { delete c_str_; };
-            char* toCStr() { return c_str_; }
+            char* toCharArray() { return c_str_; }
 
         private:
             char* c_str_;
