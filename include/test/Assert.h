@@ -8,42 +8,47 @@
 namespace bkstl
 {
     /**
-     * Assertion error
-     */
-    struct AssertionFailure : public std::exception
-    {
-        const char* what() const throw()
-        {
-            return "Test has failed.";
-        }
-    };
-
-    /**
      * Set of assertion functions for writing tests.
      */
-    class Assert
-    {
-        public:
-
-            /**
-             * Assert if two values are equals (watch out for comparing non-primitives)
-             *
-             * @param expected
-             * @param actual
-             * @param message
-             */
-            template <typename E, typename A>
-            static void assertEquals(const E& expected, const A& actual, const std::string& message = "");
+    namespace Assert
+    {    
+        /**
+         * Assertion error
+         */
+        struct AssertionFailure : public std::exception
+        {
+            const char* what() const throw()
+            {
+                return "Test has failed.";
+            }
+        };
+    
+        /**
+         * Assert if two values are equals (watch out for comparing non-primitives)
+         *
+         * @param expected
+         * @param actual
+         * @param message
+         */
+        template <typename E, typename A>
+        static void assertEquals(const E& expected, const A& actual, const char* message = "");
 
         // TODO: the rest
-        
-        private:
-            Assert() {};
-            ~Assert() {};
-    };
+        /*static void assertTrue(const bool& expression, const char* message = "");
+        static void assertFalse(const bool& expression, const char* message = "");
+
+        template <typename T>
+        static void assertNotNull(const T& expected, const char* message = "");
+
+        template <typename T>
+        static void assertNull(const T& expected, const char* message = "");
+
+        static void fail();
+        static void fail(const char* message);*/
+    }
 
     template <typename E, typename A>
-    void Assert::assertEquals(const E& expected, const A& actual, const std::string& message)
+    void Assert::assertEquals(const E& expected, const A& actual, const char* message)
     {
         if (expected == actual)
         {

@@ -7,7 +7,7 @@
 
 namespace bkstl
 {
-    // FIXME: Can't use custom deleter yet
+    // FIXME: Can't create new custom deleter yet
     /**
      * Default unique pointer deleter
      */
@@ -18,7 +18,7 @@ namespace bkstl
     };
 
     /**
-     * Unique pointer
+     * Unique pointer for managing lifecycle of objects on the heap.
      */
     template <typename T, typename D = UniqueDeleter<T> >
     class UniquePtr
@@ -109,7 +109,7 @@ namespace bkstl
     template <typename T, typename D >
     inline UniquePtr<T, D>::~UniquePtr()
     {
-        delete raw_ptr_;
+        deleter_(raw_ptr_);
     }
 
     template <typename T, typename D >
@@ -128,7 +128,7 @@ namespace bkstl
     template <typename T, typename D >
     inline void UniquePtr<T, D>::reset()
     {
-        delete raw_ptr_;
+        deleter_(raw_ptr_);
         raw_ptr_ = 0;
     }
 

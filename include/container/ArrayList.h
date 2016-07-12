@@ -23,7 +23,7 @@ namespace bkstl
                 {};
             ~ArrayList();
 
-            bool add(const T& element);
+            bool add(const T element);
             void clear();
             bool contains(const T& element);    // TODO: not implemented yet
             T get(int index);
@@ -73,8 +73,13 @@ namespace bkstl
     }
 
     template <typename T>
-    inline bool ArrayList<T>::add(const T& element)
+    inline bool ArrayList<T>::add(const T element)
     {
+        // FIXME: error-prone, dynamic resizing needs testing
+        if (capacity_ < last_index_)
+        {
+            resize(capacity_ + 1000);
+        }
         dynamic_array_[++last_index_] = element;
         return true;
     }
@@ -89,9 +94,9 @@ namespace bkstl
     }
 
     template <typename T>
-    T ArrayList<T>::get(int index)
+    T ArrayList<T>::get(const int index)
     {
-        if (index <= last_index_)
+        if (-1 < index && index <= last_index_)
         {
             return dynamic_array_[index];
         }
@@ -102,7 +107,7 @@ namespace bkstl
     }
 
     template <typename T>
-    inline T ArrayList<T>::operator[](int index)
+    inline T ArrayList<T>::operator[](const int index)
     {
         return get(index);
     }

@@ -17,7 +17,7 @@ namespace bkstl
             /**
              * Insert object to list.
              */
-            virtual bool add(const T& element)      = 0;
+            virtual bool add(const T element)      = 0;
 
             /**
              * Remove all elements from list.
@@ -32,12 +32,12 @@ namespace bkstl
             /**
              * Access element at specified index.
              */
-            virtual T get(int index)                = 0;
+            virtual T get(const int index)                = 0;
 
             /**
              * Array subscript operator overload.
              */
-            virtual T operator[](int index)         = 0;
+            virtual T operator[](const int index)         = 0;
 
             /**
              * Check if list is empty
