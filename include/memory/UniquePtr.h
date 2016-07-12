@@ -12,10 +12,15 @@ namespace bkstl
     /**
      * Default unique pointer deleter
      */
-    template <typename T>
+    /*template <typename T>
     struct UniqueDeleter
     {
         void operator()(T* raw) { delete raw; }
+    };*/
+
+    template <typename T>
+    struct UniqueDeleter
+    {
     };
 
     /**
@@ -58,9 +63,9 @@ namespace bkstl
             #endif
 
             /**
-             * Release ownership of memory resource. Be careful, because it will leak.
+             * Release ownership of memory resource as war pointer. Be careful, it will leak if not deleted manually after release.
              */
-            void release();
+            T* release();
 
             /**
              * Replace managed object.
@@ -95,7 +100,7 @@ namespace bkstl
             
         private:
             T* raw_ptr_;
-            //D deleter_;
+            //D* deleter_;
     };
 
     #if __cplusplus >= 201103L
@@ -115,9 +120,11 @@ namespace bkstl
     }
 
     template <typename T, typename D >
-    inline void UniquePtr<T, D>::release()
+    inline T* UniquePtr<T, D>::release()
     {
+        T* tmp = raw_ptr_;
         raw_ptr_ = 0;
+        return tmp;
     }
 
     template <typename T, typename D >
