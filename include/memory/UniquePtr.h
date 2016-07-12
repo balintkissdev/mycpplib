@@ -8,6 +8,7 @@
 namespace bkstl
 {
     // FIXME: Can't create new custom deleter yet
+    // FIXME: standard deleter creates storage overhead
     /**
      * Default unique pointer deleter
      */
@@ -37,10 +38,10 @@ namespace bkstl
             /**
              * Wrap memory resource with custom deleter
              */
-            UniquePtr(T* new_ptr, D deleter) 
+            /*UniquePtr(T* new_ptr, D deleter) 
                 : raw_ptr_(new_ptr)
                 , deleter_(deleter)
-                {};
+                {};*/
             
             /**
              * Destroy managed object when leaving scope
@@ -94,7 +95,7 @@ namespace bkstl
             
         private:
             T* raw_ptr_;
-            D deleter_;
+            //D deleter_;
     };
 
     #if __cplusplus >= 201103L
@@ -109,7 +110,8 @@ namespace bkstl
     template <typename T, typename D >
     inline UniquePtr<T, D>::~UniquePtr()
     {
-        deleter_(raw_ptr_);
+        delete raw_ptr_;
+        //deleter_(raw_ptr_);
     }
 
     template <typename T, typename D >
@@ -128,7 +130,8 @@ namespace bkstl
     template <typename T, typename D >
     inline void UniquePtr<T, D>::reset()
     {
-        deleter_(raw_ptr_);
+        //deleter_(raw_ptr_);
+        delete raw_ptr_;
         raw_ptr_ = 0;
     }
 

@@ -19,11 +19,11 @@ void testUniquePtr()
     }
     assertEquals(100, *int_ptr);
 
-    // Check for no storage overhead    FIXME: UniquePtr has storage overhead
-    //int* raw_intptr = new int(100);
-    //bkstl::UniquePtr<int> int_ptr2(new int(100));
-    //assertEquals(sizeof(raw_intptr), sizeof(int_ptr2), "UniquePtr has storage overhead");
-    //delete raw_intptr;
+    // Check for no storage overhead    FIXME: UniquePtr has storage overhead when defining standard deleter
+    int* raw_intptr = new int(100);
+    bkstl::UniquePtr<int> int_ptr2(new int(100));
+    assertEquals(sizeof(raw_intptr), sizeof(int_ptr2), "UniquePtr has storage overhead");
+    delete raw_intptr;
 }
 
 void testArrayList()
