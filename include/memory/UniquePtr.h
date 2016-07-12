@@ -235,13 +235,14 @@ namespace bkstl
     template <typename T, typename D>
     inline void UniquePtr<T, D>::reset(T* new_ptr)
     {
+        reset();
         ptr_.reset(new_ptr);
     }
 
     template <typename T, typename D>
     inline void UniquePtr<T, D>::reset()
     {
-        ptr_.reset();
+        deleter_(ptr_.release());
     }
 
     template <typename T, typename D>
