@@ -15,10 +15,18 @@ struct MyDeleter
 {
     void operator()(X* raw)
     {
-        bkstl::System::out::println("Trying out custom deleter.");
+        bkstl::System::out::println("Trying out custom deleter object.");
         delete raw;
     }
 };
+
+template <typename X>
+void deleterFunction(X* raw)
+{
+    bkstl::System::out::println("Trying out custom deleter function.");
+    delete raw;
+}
+
 
 void testUniquePtr()
 {
@@ -38,8 +46,8 @@ void testUniquePtr()
 
     // Using custom deleter
     bkstl::UniquePtr<int, MyDeleter<int> > ptr_with_deleter(new int(55));
-    bkstl::UniquePtr<std::string, MyDeleter<std::string> > strptr_with_deleter(new std::string("word"));
     assertEquals(55, *ptr_with_deleter);
+    bkstl::UniquePtr<std::string, void(*)(std::string*) > strptr_with_deleter(new std::string("word"), deleterFunction<std::string>);
     assertEquals("word", *strptr_with_deleter);
 }
 

@@ -26,6 +26,11 @@ namespace bkstl
             UniquePtr(T* new_ptr) : ptr_(new_ptr) {};
 
             /**
+             * Wrap memory resource and specify deleter
+             */
+            UniquePtr(T* new_ptr, D deleter ) : ptr_(new_ptr), deleter_(deleter) {};
+
+            /**
              * Destroy managed object when leaving scope with custom deleter
              */
             ~UniquePtr();
