@@ -16,7 +16,7 @@ namespace bkstl
     class ArrayList : public List<T>
     {
         public:
-            ArrayList(std::size_t capacity = 1000)
+            ArrayList(int capacity = 1000)
                 : last_index_(-1)
                 , capacity_(capacity)
                 , dynamic_array_(new T[capacity_])
@@ -29,22 +29,22 @@ namespace bkstl
             T get(int index);
             T operator[](int index);
             bool isEmpty();
-            std::size_t size();
+            size_t size();
 
             /**
              * Query currently allocated capacity
              */
-            std::size_t capacity();
+            int capacity();
 
         private:
             int last_index_;
-            std::size_t capacity_;
+            int capacity_;
             T* dynamic_array_;
 
             /**
              * Resizing helper
              */
-            void resize(std::size_t new_size);
+            void resize(size_t new_size);
 
             /**
              * Eraser for value types used in clear()
@@ -57,14 +57,6 @@ namespace bkstl
             void erase(T*& ptr);
     };
 
-    /*template <typename T>
-    inline ArrayList<T>::ArrayList()
-    {
-        last_index_ = -1;
-        capacity_ = 1000;
-        dynamic_array_ = new T[capacity_];
-    }*/
-
     template <typename T>
     inline ArrayList<T>::~ArrayList()
     {
@@ -75,8 +67,7 @@ namespace bkstl
     template <typename T>
     inline bool ArrayList<T>::add(const T element)
     {
-        // FIXME: error-prone, dynamic resizing needs testing
-        if (capacity_ < last_index_)
+        if (capacity_ < size())
         {
             resize(capacity_ + 1000);
         }
@@ -119,26 +110,26 @@ namespace bkstl
     }
 
     template <typename T>
-    inline std::size_t ArrayList<T>::size()
+    inline size_t ArrayList<T>::size()
     {
         return last_index_ + 1;
     }
 
     template <typename T>
-    inline std::size_t ArrayList<T>::capacity()
+    inline int ArrayList<T>::capacity()
     {
         return capacity_;
     }
 
     template <typename T>
-    void ArrayList<T>::resize(std::size_t new_size)
+    void ArrayList<T>::resize(size_t new_size)
     {
         // Reallocate
         capacity_ = new_size;
         T* realloc = new T[capacity_];
 
         // Copy
-        for (std::size_t i = 0; i < new_size; ++i)
+        for (int i = 0; i < new_size; ++i)
         {
             realloc[i] = dynamic_array_[i];
         }

@@ -123,11 +123,12 @@ namespace bkstl
         return current;
     }
 
+    // FIXME: bugged
     template <typename T>
     SingleNode<T>* LinkedList<T>::traverse(const int index)
     {
         SingleNode<T>* current = head_node_;
-        for (int i = 0; i < index; ++i)
+        for (int i = 0; i < index + 1; ++i)
         {
             current = head_node_->next_node_;
         }

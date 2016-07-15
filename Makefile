@@ -1,9 +1,10 @@
+.PHONY: test leak-check clean
+
 CFLAGS=-g -Wall -Wno-sign-compare -std=c++98
 INCLUDE= -I./include
 SRC=test/TestSuite.cpp 
 OBJ=Libtest
 
-.PHONY: test
 test:
 	${CXX} ${CFLAGS} ${SRC} ${INCLUDE} -o ${OBJ} && ./${OBJ}
 
@@ -15,6 +16,5 @@ leak-check:
 #.PHONY: benchmark
 #benchmark: TODO
 
-.PHONY: clean
 clean:
 	rm -f Libtest

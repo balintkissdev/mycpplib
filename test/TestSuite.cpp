@@ -54,9 +54,16 @@ void testUniquePtr()
 void testArrayList()
 {
     bkstl::ArrayList<int> list;
+    assertEquals(0, list.size());
     list.add(35);
     assertEquals(35, list[0]);
     assertEquals(1000, list.capacity());
+    for (int i = 1; i <= 1000; ++i)
+    {
+        list.add(0);
+    }
+    assertEquals(1001, list.size());
+    assertEquals(2000, list.capacity());
 
     bkstl::UniquePtr< bkstl::List<int> > array_list(new bkstl::ArrayList<int>());
     // UniquePtr< List<int> > array_list = makeUnique<ArrayList <int> >();  // FIXME: doesn't support polymorphism yet
@@ -80,8 +87,8 @@ void testLinkedList()
     list.add(12);
     assertEquals(40, list[0]);
     assertEquals(12, list[1]);
-    //list.add(33);                 // FIXME
-    //assertEquals(33, list[2]);
+    list.add(33);
+    assertEquals(33, list[2]);  // FIXME access
 }
 
 void testSystemOut()
@@ -103,10 +110,10 @@ void testSystemOut()
 
 int main()
 {
-    testSystemOut();
-    testUniquePtr();
+    //testSystemOut();
+    //testUniquePtr();
     //testArrayList();  // FIXME: fails
-    //testLinkedList(); // FIXME: fails
+    testLinkedList(); // FIXME: fails
 
     return 0;
 }
