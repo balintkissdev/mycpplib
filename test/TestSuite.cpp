@@ -88,7 +88,10 @@ void testLinkedList()
     assertEquals(40, list[0]);
     assertEquals(12, list[1]);
     list.add(33);
-    assertEquals(33, list[2]);  // FIXME access
+    assertEquals(33, list[2]);
+    list.add(65);
+    assertEquals(12, list[1]);
+    assertEquals(65, list[3]);
 }
 
 void testSystemOut()
@@ -113,7 +116,7 @@ int main()
     testSystemOut();
     testUniquePtr();
     //testArrayList();  // FIXME: fails
-    //testLinkedList(); // FIXME: fails
+    testLinkedList(); // FIXME: fails
 
     return 0;
 }
