@@ -110,10 +110,10 @@ void testSystemOut()
 
 int main()
 {
-    //testSystemOut();
-    //testUniquePtr();
+    testSystemOut();
+    testUniquePtr();
     //testArrayList();  // FIXME: fails
-    testLinkedList(); // FIXME: fails
+    //testLinkedList(); // FIXME: fails
 
     return 0;
 }

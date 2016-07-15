@@ -3,6 +3,9 @@
 
 #include <cstddef>
 
+template <typename T>
+class Iterator;
+
 namespace bkstl
 {
     /**
@@ -40,14 +43,17 @@ namespace bkstl
             virtual T operator[](const int index)         = 0;
 
             /**
-             * Check if list is empty
+              Check if list is empty
              */
             virtual bool isEmpty()                  = 0;
 
             /**
              * Return an iterator
              */
-            // TODO: Iterator<T> iterator()         = 0;
+            Iterator<T> iterator()
+            {
+                return Iterator<T>(*this);
+            }
             
             /**
              * Remove element at specified index
@@ -57,7 +63,7 @@ namespace bkstl
             /**
              * Query number of stored elements
              */
-            virtual std::size_t size()              = 0;
+            virtual size_t size()              = 0;
     };
 } // namespace bkstl
 
