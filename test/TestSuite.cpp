@@ -53,17 +53,24 @@ void testUniquePtr()
 
 void testArrayList()
 {
-    bkstl::ArrayList<int> list;
+    bkstl::ArrayList<int> list(5);
     assertEquals(0, list.size());
     list.add(35);
     assertEquals(35, list[0]);
-    assertEquals(1000, list.capacity());
-    for (int i = 1; i <= 1000; ++i)
+    assertEquals(1, list.size());
+    assertEquals(5, list.capacity());
+    for (int i = 1; i <= 4; ++i)
     {
-        list.add(0);
+        list.add(7);
     }
-    assertEquals(1001, list.size());
-    assertEquals(2000, list.capacity());
+    assertEquals(5, list.size());
+    assertEquals(5, list.capacity());
+    list.add(1);
+    assertEquals(6, list.size());
+    assertEquals(1005, list.capacity());
+
+    list.clear();
+    assertEquals(0, list.size());
 
     bkstl::UniquePtr< bkstl::List<int> > array_list(new bkstl::ArrayList<int>());
     // UniquePtr< List<int> > array_list = makeUnique<ArrayList <int> >();  // FIXME: doesn't support polymorphism yet
@@ -83,15 +90,20 @@ void testLinkedList()
     list.add(40);
     assertEquals(40, list[0]);
 
+    // Clear
+    list.clear();
+    assertEquals(0, list.size());
+
     // Continous insert
-    list.add(12);
-    assertEquals(40, list[0]);
-    assertEquals(12, list[1]);
-    list.add(33);
-    assertEquals(33, list[2]);
-    list.add(65);
-    assertEquals(12, list[1]);
-    assertEquals(65, list[3]);
+    int samples[] = {87, 12, 33, 65, 77};
+    for (int i = 0; i < (sizeof(samples) / sizeof(samples[0])); ++i)
+    {
+        list.add(samples[i]);
+    }
+    for (int i = 0; i < (sizeof(samples) / sizeof(samples[0])); ++i)
+    {
+        assertEquals(samples[i], list[i]);
+    }
 }
 
 void testSystemOut()
@@ -115,8 +127,8 @@ int main()
 {
     testSystemOut();
     testUniquePtr();
-    //testArrayList();  // FIXME: fails
-    testLinkedList(); // FIXME: fails
+    testArrayList();
+    testLinkedList();
 
     return 0;
 }

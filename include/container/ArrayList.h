@@ -67,7 +67,7 @@ namespace bkstl
     template <typename T>
     inline bool ArrayList<T>::add(const T element)
     {
-        if (capacity_ < size())
+        if (capacity_ <= size())
         {
             resize(capacity_ + 1000);
         }
@@ -82,6 +82,7 @@ namespace bkstl
         {
             erase(dynamic_array_[i]);
         }
+        last_index_ = -1;
     }
 
     template <typename T>

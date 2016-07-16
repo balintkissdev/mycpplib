@@ -12,7 +12,7 @@ namespace bkstl
     {
         T value_;
         SingleNode* next_node_;
-        SingleNode(T value, SingleNode* next) : value_(value), next_node_(next) {};
+        SingleNode(T value, SingleNode* next = 0) : value_(value), next_node_(next) {};
     };
 
     template <typename T>
@@ -29,10 +29,10 @@ namespace bkstl
             bool isEmpty();
             // TODO: Iterator<T> iterator();
             // TODO: T remove(int index);
-            std::size_t size();
+            size_t size();
 
         private:
-            std::size_t size_;
+            size_t size_;
             SingleNode<T>* head_node_;
 
             /**
@@ -52,17 +52,18 @@ namespace bkstl
         clear();
     }
 
-    // FIXME: can't add more than two elements
     template <typename T>
     inline bool LinkedList<T>::add(const T element)
     {
+        // Initial insert
         if (!head_node_)
         {
-            head_node_ = new SingleNode<T>(element, 0);
+            head_node_ = new SingleNode<T>(element);
         }
+        // Continous insert
         else
         {
-            traverse()->next_node_ = new SingleNode<T>(element, 0);
+            traverse()->next_node_ = new SingleNode<T>(element);
         }
         ++size_;
 
@@ -81,6 +82,7 @@ namespace bkstl
             current = tmp->next_node_;
             delete tmp;
         }
+        head_node_ = 0;
         size_ = 0;
     }
 
@@ -123,7 +125,6 @@ namespace bkstl
         return current;
     }
 
-    // FIXME: bugged
     template <typename T>
     SingleNode<T>* LinkedList<T>::traverse(const int index)
     {
