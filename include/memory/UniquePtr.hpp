@@ -1,5 +1,5 @@
-#ifndef BKSTL_UNIQUE_PTR_H
-#define BKSTL_UNIQUE_PTR_H
+#ifndef BKSTL_UNIQUE_PTR_HPP_
+#define BKSTL_UNIQUE_PTR_HPP_
 
 #if __cplusplus >= 201103L
 #include <utility>      // Needed for move semantics if C++0x support is enabled
@@ -270,4 +270,4 @@ namespace bkstl
     }
 } // namespace bkstl
 
-#endif  // BKSTL_UNIQUE_PTR_H
+#endif  // BKSTL_UNIQUE_PTR_HPP_

@@ -1,9 +1,9 @@
-#ifndef BKSTL_LINKED_LIST_H
-#define BKSTL_LINKED_LIST_H
+#ifndef BKSTL_LINKED_LIST_HPP_
+#define BKSTL_LINKED_LIST_HPP_
 
 #include <exception>
 
-#include "List.h"
+#include "List.hpp"
 
 namespace bkstl
 {
@@ -137,4 +137,4 @@ namespace bkstl
     }
 } // namespace bkstl
 
-#endif  // BKSTL_LINKED_LIST_H
+#endif  // BKSTL_LINKED_LIST_HPP_

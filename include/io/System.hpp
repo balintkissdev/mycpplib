@@ -1,5 +1,5 @@
-#ifndef BKSTL_SYSTEM_H
-#define BKSTL_SYSTEM_H
+#ifndef BKSTL_SYSTEM_HPP_
+#define BKSTL_SYSTEM_HPP_
 
 #include <iostream>
 #include <string>
@@ -61,4 +61,4 @@ namespace bkstl
 
 } // namespace bkstl
 
-#endif  // BKSTL_SYSTEM_H
+#endif  // BKSTL_SYSTEM_HPP_

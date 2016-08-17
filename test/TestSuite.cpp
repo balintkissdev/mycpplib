@@ -1,12 +1,12 @@
 #include <iostream>
 #include <string>
 
-#include <io/System.h>
-#include <util/String.h>
-#include <test/Assert.h>
-#include <memory/UniquePtr.h>
-#include <container/ArrayList.h>
-#include <container/LinkedList.h>
+#include <io/System.hpp>
+#include <util/String.hpp>
+#include <test/Assert.hpp>
+#include <memory/UniquePtr.hpp>
+#include <container/ArrayList.hpp>
+#include <container/LinkedList.hpp>
 
 using namespace bkstl::Assert;
 
@@ -105,6 +105,22 @@ void testLinkedList()
         assertEquals(samples[i], list[i]);
     }
 }
+
+// FIXME
+/*void testIterator()
+{
+    bkstl::ArrayList<int> list;
+    for (int i = 0; i < 5; ++i)
+    {
+        list.add(i);
+    }
+
+    bkstl::Iterator<int> it0 = list.iterator();
+    while (it0.hasNext())
+    {
+        // TODO
+    }
+}*/
 
 void testSystemOut()
 {

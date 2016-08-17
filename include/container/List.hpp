@@ -1,10 +1,8 @@
-#ifndef BKSTL_LIST_H
-#define BKSTL_LIST_H
+#ifndef BKSTL_LIST_HPP_
+#define BKSTL_LIST_HPP_
 
 #include <cstddef>
 
-template <typename T>
-class Iterator;
 
 namespace bkstl
 {
@@ -47,13 +45,26 @@ namespace bkstl
              */
             virtual bool isEmpty()                  = 0;
 
+            // FIXME: Header dependency problems
             /**
              * Return an iterator
              */
-            Iterator<T> iterator()
+            /*Iterator<T> iterator()
             {
                 return Iterator<T>(*this);
             }
+            
+            Iterator<T> begin()
+            {
+                return iterator();
+            }
+
+            Iterator<T> end()
+            {
+                Iterator<T> it;
+                it.last();
+                return it;
+            }*/
             
             /**
              * Remove element at specified index
@@ -67,4 +78,4 @@ namespace bkstl
     };
 } // namespace bkstl
 
-#endif  // BKSTL_LIST_H
+#endif  // BKSTL_LIST_HPP_

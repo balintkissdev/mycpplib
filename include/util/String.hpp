@@ -1,5 +1,5 @@
-#ifndef BKSTL_STRING_H
-#define BKSTL_STRING_H
+#ifndef BKSTL_STRING_HPP_
+#define BKSTL_STRING_HPP_
 
 namespace bkstl
 {
@@ -16,4 +16,4 @@ namespace bkstl
     };
 } // namespace bkstl
 
-#endif  // BKSTL_STRING_H
+#endif  // BKSTL_STRING_HPP_

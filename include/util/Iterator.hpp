@@ -1,8 +1,10 @@
-#ifndef BKSTL_ITERATOR_H
-#define BKSTL_ITERATOR_H
+#ifndef BKSTL_ITERATOR_HPP_
+#define BKSTL_ITERATOR_HPP_
 
-#include <../container/List.h>
+#include "../container/List.hpp"
 
+// FIXME: Header dependency hell problems
+// TODO: optimization
 namespace bkstl
 {
     template <typename T>
@@ -11,7 +13,14 @@ namespace bkstl
         public:
             Iterator(const List<T>& list) : index_(0), list_(list) {};
             ~Iterator() {};
+
+            // STL-style operations
+            T operator*();
+            Iterator& operator++();
+
+            // Java-style operations
             T first();
+            T last();
             T next();
             bool hasNext() const;
             T get();
@@ -22,9 +31,29 @@ namespace bkstl
     };
 
     template <typename T>
+    inline T Iterator<T>::operator*()
+    {
+        return get();
+    }
+
+    template <typename T>
+    inline Iterator<T>& Iterator<T>::operator++()
+    {
+        ++index_;
+        return *this;
+    }
+
+    template <typename T>
     inline T Iterator<T>::first()
     {
         index_ = 0;
+        return get();
+    }
+
+    template <typename T>
+    inline T Iterator<T>::last()
+    {
+        index_ = list_.size() - 1;
         return get();
     }
 
@@ -52,4 +81,4 @@ namespace bkstl
     }
 } // namespace bkstl
 
-#endif  // BKSTL_ITERATOR_H
+#endif  // BKSTL_ITERATOR_HPP_

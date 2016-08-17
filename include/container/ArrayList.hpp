@@ -1,9 +1,9 @@
-#ifndef BKSTL_ARRAY_LIST_H
-#define BKSTL_ARRAY_LIST_H
+#ifndef BKSTL_ARRAY_LIST_HPP_
+#define BKSTL_ARRAY_LIST_HPP_
 
 #include <exception>
 
-#include "List.h"
+#include "List.hpp"
 
 namespace bkstl
 {
@@ -152,4 +152,4 @@ namespace bkstl
     }
 } // namespace bkstl
 
-#endif  // BKSTL_ARRAY_LIST_H
+#endif  // BKSTL_ARRAY_LIST_HPP_

@@ -1,5 +1,5 @@
-#ifndef BKSTL_ASSERT_H
-#define BKSTL_ASSERT_H
+#ifndef BKSTL_ASSERT_HPP_
+#define BKSTL_ASSERT_HPP_
 
 #include <iostream>
 #include <cstdlib>
@@ -63,4 +63,4 @@ namespace bkstl
     }
 }
 
-#endif  // BKSTL_ASSERT_H
+#endif  // BKSTL_ASSERT_HPP_
