@@ -1,3 +1,4 @@
+// TODO: Separate unit tests for each components instead of this.
 #include <iostream>
 #include <string>
 
@@ -8,14 +9,14 @@
 #include <container/ArrayList.hpp>
 #include <container/LinkedList.hpp>
 
-using namespace bkstl::Assert;
+using namespace jlstl::Assert;
 
 template <typename X>
 struct MyDeleter
 {
     void operator()(X* raw)
     {
-        bkstl::System::out::println("Trying out custom deleter object.");
+        jlstl::System::out::println("Trying out custom deleter object.");
         delete raw;
     }
 };
@@ -23,7 +24,7 @@ struct MyDeleter
 template <typename X>
 void deleterFunction(X* raw)
 {
-    bkstl::System::out::println("Trying out custom deleter function.");
+    jlstl::System::out::println("Trying out custom deleter function.");
     delete raw;
 }
 
@@ -31,7 +32,7 @@ void deleterFunction(X* raw)
 void testUniquePtr()
 {
     // Base unique pointer facilities
-    bkstl::UniquePtr<int> int_ptr;
+    jlstl::UniquePtr<int> int_ptr;
     if (!int_ptr)
     {
         int_ptr.reset(new int(100));
@@ -40,20 +41,20 @@ void testUniquePtr()
 
     // Check for no storage size overhead
     int* raw_intptr = new int(100);
-    bkstl::UniquePtr<int> int_ptr2(new int(100));
+    jlstl::UniquePtr<int> int_ptr2(new int(100));
     assertEquals(sizeof(raw_intptr), sizeof(int_ptr2), "UniquePtr has size overhead");
     delete raw_intptr;
 
     // Using custom deleter
-    bkstl::UniquePtr<int, MyDeleter<int> > ptr_with_deleter(new int(55));
+    jlstl::UniquePtr<int, MyDeleter<int> > ptr_with_deleter(new int(55));
     assertEquals(55, *ptr_with_deleter);
-    bkstl::UniquePtr<std::string, void(*)(std::string*) > strptr_with_deleter(new std::string("word"), deleterFunction<std::string>);
+    jlstl::UniquePtr<std::string, void(*)(std::string*) > strptr_with_deleter(new std::string("word"), deleterFunction<std::string>);
     assertEquals("word", *strptr_with_deleter);
 }
 
 void testArrayList()
 {
-    bkstl::ArrayList<int> list(5);
+    jlstl::ArrayList<int> list(5);
     assertEquals(0, list.size());
     list.add(35);
     assertEquals(35, list[0]);
@@ -72,7 +73,7 @@ void testArrayList()
     list.clear();
     assertEquals(0, list.size());
 
-    bkstl::UniquePtr< bkstl::List<int> > array_list(new bkstl::ArrayList<int>());
+    jlstl::UniquePtr< jlstl::List<int> > array_list(new jlstl::ArrayList<int>());
     // UniquePtr< List<int> > array_list = makeUnique<ArrayList <int> >();  // FIXME: doesn't support polymorphism yet
     array_list->add(2);
     array_list->add(34);
@@ -84,7 +85,7 @@ void testArrayList()
 
 void testLinkedList()
 {
-    bkstl::LinkedList<int> list;
+    jlstl::LinkedList<int> list;
 
     // Initial insert
     list.add(40);
@@ -109,13 +110,13 @@ void testLinkedList()
 // FIXME
 /*void testIterator()
 {
-    bkstl::ArrayList<int> list;
+    jlstl::ArrayList<int> list;
     for (int i = 0; i < 5; ++i)
     {
         list.add(i);
     }
 
-    bkstl::Iterator<int> it0 = list.iterator();
+    jlstl::Iterator<int> it0 = list.iterator();
     while (it0.hasNext())
     {
         // TODO
@@ -124,7 +125,7 @@ void testLinkedList()
 
 void testSystemOut()
 {
-    using namespace bkstl;
+    using namespace jlstl;
 
     // const char*
     System::out::print("Test char* cout.\n");

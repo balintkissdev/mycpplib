@@ -1,8 +1,8 @@
-# BKSTL: My STL implementation
+# JLSTL: My STL implementation ("Java-like STL")
 (work in progress)
 
 ## Description
-This is my take on recreating STL, with API somewhat inspired by Java API. The goal was to be able to compile with C++98 compiler (although there are optional features with C++0x) and minimize the use of the C++ Standard Library. It's just a hobby. It currently includes
+This is my take on recreating STL, with API somewhat inspired by Java API. The goal is to be able to compile with C++98 compiler and minimize the use of the C++ Standard Library. It's just a hobby for me. It currently includes
 * A unique pointer (UniquePtr.h)
 * A dynamic array (ArrayList.h)
 * and a barebone unit test framework (Assert.h)

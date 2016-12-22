@@ -1,64 +1,43 @@
-#ifndef BKSTL_SYSTEM_HPP_
-#define BKSTL_SYSTEM_HPP_
+#ifndef JLSTL_SYSTEM_HPP_
+#define JLSTL_SYSTEM_HPP_
 
-#include <iostream>
-#include <string>
+#include <cstdio>
 
-// FIXME: don't use Standard Library
-namespace bkstl
+namespace jlstl
 {
-    namespace System
-    {
-        namespace out
-        {
-            static void print(const char* str)
-            {
-                std::cout << str;
-            }
+namespace System
+{
+namespace out
+{
+  static void print(const char* str)
+  {
+    printf("%s", str);
+  }
 
-            static void println(const char* str)
-            {
-                std::cout << str << '\n';
-            }
+  static void println(const char* str)
+  {
+    printf("%s\n", str);
+  }
+} // namespace out
 
-            static void print(const std::string& str)
-            {
-                print(str.c_str());
-            }
+namespace err
+{
+  static void print(const char* str)
+  {
+    fprintf(stderr, "%s", str);
+  }
 
-            static void println(const std::string& str)
-            {
-                println(str.c_str());
-            }
-        }
+  static void println(const char* str)
+  {
+    fprintf(stderr, "%s\n", str);
+  }
+} // namespace err
 
-        namespace err
-        {
-            static void print(const char* str)
-            {
-                std::cerr << str;
-            }
+namespace in
+{
 
-            static void println(const char* str)
-            {
-                std::cerr << str << '\n';
-            }
+} // namespace in
+} // namespace System
+} // namespace jlstl
 
-            static void print(const std::string& str)
-            {
-                print(str.c_str());
-            }
-
-            static void println(const std::string& str)
-            {
-                println(str.c_str());
-            }
-        }
-
-        namespace in
-        {}
-    }
-
-} // namespace bkstl
-
-#endif  // BKSTL_SYSTEM_HPP_
+#endif  // JLSTL_SYSTEM_HPP_
