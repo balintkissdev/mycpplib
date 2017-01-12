@@ -4,6 +4,9 @@
 namespace jlstl
 {
 
+/**
+ * Null pointer type based on Scott Meyer's idiom.
+ */
 const class NullPtrType
 {
   public:

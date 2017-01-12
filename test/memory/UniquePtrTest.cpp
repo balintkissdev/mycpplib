@@ -1,3 +1,4 @@
+#include <cstddef>
 #include <string>
 
 #include <io/System.hpp>
@@ -23,23 +24,47 @@ void deleterFunction(T* raw)
   delete raw;
 }
 
-void testBaseFacilities()
+void testRelease()
 {
-  jlstl::UniquePtr<int> int_ptr;
-  if (!int_ptr)
+  jlstl::UniquePtr<int> ptr(new int(100));
+
+  int* raw_ptr = ptr.release();
+  assertEquals(static_cast<int*>(NULL), ptr.get()); // FIXME
+  assertEquals(100, *raw_ptr);
+
+  delete raw_ptr;
+}
+
+void testReset()
+{
+  jlstl::UniquePtr<int> ptr;
+  if (!ptr)
   {
-    int_ptr.reset(new int(100));
+    ptr.reset(new int(100));
   }
-  assertEquals(100, *int_ptr);
+  assertEquals(100, *ptr);
+}
+
+void testGet()
+{
+  jlstl::UniquePtr<int> ptr(new int(200));
+  int* raw_ptr = ptr.get();
+  assertEquals(200, *raw_ptr);
+}
+
+void testDereference()
+{
+  jlstl::UniquePtr<int> ptr(new int(300));
+  assertEquals(300, *ptr);
 }
 
 void testStorageOverhead()
 {
-  int* raw_intptr = new int(100);
-  jlstl::UniquePtr<int> int_ptr(new int(100));
+  int* raw_ptr = new int(100);
+  jlstl::UniquePtr<int> ptr(new int(100));
 
-  assertEquals(sizeof(raw_intptr), sizeof(int_ptr), "UniquePtr has size overhead");
-  delete raw_intptr;
+  assertEquals(sizeof(raw_ptr), sizeof(ptr), "UniquePtr has size overhead");
+  delete raw_ptr;
 }
 
 void testCustomDeleter()
@@ -55,7 +80,10 @@ void testCustomDeleter()
 
 int main()
 {
-  testBaseFacilities();
+  testRelease();
+  testReset();
+  testGet();
+  testDereference();
   testStorageOverhead();
   testCustomDeleter();
 

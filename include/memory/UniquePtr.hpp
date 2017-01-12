@@ -1,6 +1,8 @@
 #ifndef JLSTL_UNIQUE_PTR_HPP_
 #define JLSTL_UNIQUE_PTR_HPP_
 
+#include "NullPtr.hpp"
+
 namespace jlstl
 {
 
@@ -17,7 +19,7 @@ class UniquePtr
      * Default constructor to initialize to null
      */
     UniquePtr()
-      : ptr_()
+      : ptr_(NullPtr)
       {};
 
     /**
@@ -112,7 +114,7 @@ class UniquePtr<T, void>
      * Default constructor to initialize to null
      */
     UniquePtr()
-      : raw_ptr_(0)
+      : raw_ptr_(NullPtr)
       {};
 
     /**
@@ -180,7 +182,7 @@ template <typename T>
 inline T* UniquePtr<T>::release()
 {
   T* tmp = raw_ptr_;
-  raw_ptr_ = 0;
+  raw_ptr_ = NullPtr;
   return tmp;
 }
 
@@ -195,7 +197,7 @@ template <typename T>
 inline void UniquePtr<T>::reset()
 {
   delete raw_ptr_;
-  raw_ptr_ = 0;
+  raw_ptr_ = NullPtr;
 }
 
 template <typename T>
@@ -272,6 +274,7 @@ inline UniquePtr<T, D>::operator bool() const
 {
   return ptr_.get();
 }
+
 } // namespace jlstl
 
 #endif  // JLSTL_UNIQUE_PTR_HPP_
