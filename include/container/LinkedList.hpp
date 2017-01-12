@@ -4,6 +4,7 @@
 #include <exception>
 
 #include "List.hpp"
+#include "../memory/NullPtr.hpp"
 
 namespace jlstl
 {
@@ -20,17 +21,27 @@ template <typename T>
 class LinkedList : public List<T>
 {
   public:
-    LinkedList() : size_(0), head_node_(0) {};
+    LinkedList() 
+      : size_(0)
+      , head_node_(0)
+    {}
     ~LinkedList();
+
     bool add(const T element);
+    void add(const int index, const T element);
     void clear();
-    // TODO: bool contains(const T& element);
-    T get(int index);
-    T operator[](int index);
-    bool isEmpty();
-    // TODO: Iterator<T> iterator();
-    // TODO: T remove(int index);
-    size_t size();
+    bool contains(const T& element) const;
+    T get(const int index);
+    T operator[](const int index);
+    int indexOf(const T& element) const;
+    bool isEmpty() const;
+    int lastIndexOf(const T& element) const;
+    T remove(const int index);
+    bool remove(const T& element);
+    T set(const int index, const T& element);
+    int size() const;
+    void sort();
+    T* toArray();
 
   private:
     size_t size_;
@@ -72,6 +83,12 @@ inline bool LinkedList<T>::add(const T element)
 }
 
 template <typename T>
+inline void LinkedList<T>::add(const int index, const T element)
+{
+  // TODO
+}
+
+template <typename T>
 inline void LinkedList<T>::clear()
 {
   // Start from beginning and delete everything from there
@@ -85,6 +102,13 @@ inline void LinkedList<T>::clear()
   }
   head_node_ = 0;
   size_ = 0;
+}
+
+template <typename T>
+inline bool LinkedList<T>::contains(const T& element) const
+{
+  // TODO
+  return 0;
 }
 
 template <typename T>
@@ -104,15 +128,63 @@ inline T LinkedList<T>::operator[](const int index)
 }
 
 template <typename T>
-inline bool LinkedList<T>::isEmpty()
+inline int LinkedList<T>::indexOf(const T& element) const
+{
+  // TODO
+  return -1;
+}
+
+template <typename T>
+inline bool LinkedList<T>::isEmpty() const
 {
   return size_ < 1;
 }
 
 template <typename T>
-inline std::size_t LinkedList<T>::size()
+inline int LinkedList<T>::lastIndexOf(const T& element) const
+{
+  // TODO
+  return -1;
+}
+
+template <typename T>
+inline T LinkedList<T>::remove(const int index)
+{
+  // TODO
+  return 0;
+}
+
+template <typename T>
+inline bool LinkedList<T>::remove(const T& element)
+{
+  // TODO
+  return false;
+}
+
+template <typename T>
+inline T LinkedList<T>::set(const int index, const T& element)
+{
+  // TODO
+  return 0;
+}
+
+template <typename T>
+inline int LinkedList<T>::size() const
 {
   return size_;
+}
+
+template <typename T>
+inline void LinkedList<T>::sort()
+{
+  // TODO
+}
+
+template <typename T>
+inline T* LinkedList<T>::toArray()
+{
+  // TODO
+  return NullPtr;
 }
 
 template <typename T>

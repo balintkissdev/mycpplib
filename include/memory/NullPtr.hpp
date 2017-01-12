@@ -4,7 +4,7 @@
 namespace jlstl
 {
 
-const class NullPtr
+const class NullPtrType
 {
   public:
     

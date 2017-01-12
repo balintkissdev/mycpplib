@@ -42,7 +42,7 @@ class List
     * @param element
     * @return
     */
-    virtual bool contains(const T& element) = 0;
+    virtual bool contains(const T& element) const = 0;
 
     /**
      * Access element at specified index.
@@ -60,14 +60,14 @@ class List
      * @param element
      * @return
      */
-    virtual int indexOf(const T& element) = 0;
+    virtual int indexOf(const T& element) const = 0;
 
     /**
      * Check if list is empty.
      *
      * @return
      */
-    virtual bool isEmpty() = 0;
+    virtual bool isEmpty() const = 0;
 
     // FIXME: Header dependency problems
     /**
@@ -98,7 +98,7 @@ class List
      * @param element
      * @return
      */
-    virtual int lastIndexOf(const T& element) = 0;
+    virtual int lastIndexOf(const T& element) const = 0;
 
     /**
      * Remove element at specified index from the list.
@@ -130,21 +130,12 @@ class List
      *
      * @return
      */
-    virtual size_t size() = 0;
+    virtual int size() const = 0;
 
     /**
      * Sort with comparator. (TODO)
      */
     virtual void sort() = 0;
-
-    /**
-     * Return portion of the list.
-     *
-     * @param from_index
-     * @param to_index
-     * @return
-     */
-    virtual List<T> subList(const int from_index, const int to_index) = 0;
 
     /**
      * Return array representation of existing list.

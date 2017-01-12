@@ -3,6 +3,7 @@
 
 namespace jlstl
 {
+
 /**
  * Unique pointer for managing lifecycle of objects on the heap.
  * Uses template specialization to help define custom deleter.
@@ -24,7 +25,7 @@ class UniquePtr
      *
      * @param new_ptr   Raw pointer to wrap
      */
-    UniquePtr(const T* new_ptr)
+    UniquePtr(T* new_ptr)
       : ptr_(new_ptr) 
       {};
 
@@ -34,7 +35,7 @@ class UniquePtr
      * @param raw_ptr
      * @param deleter
      */
-    UniquePtr(const T* new_ptr, const D deleter )
+    UniquePtr(T* new_ptr, const D deleter )
       : ptr_(new_ptr)
       , deleter_(deleter)
       {};
@@ -60,7 +61,7 @@ class UniquePtr
      *
      * @param
      */
-    void reset(const T* new_ptr);
+    void reset(T* new_ptr);
 
     /**
      * Free managed object.
@@ -117,7 +118,7 @@ class UniquePtr<T, void>
     /**
      * Wrap memory resource
      */
-    UniquePtr(const T* new_ptr)
+    UniquePtr(T* new_ptr)
       : raw_ptr_(new_ptr)
       {};
 

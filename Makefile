@@ -1,12 +1,14 @@
 .PHONY: test leak-check clean
 
-CFLAGS=-g -Wall -Wextra -Wno-sign-compare -std=c++98
+CFLAGS=-g -Wall -std=c++98
 INCLUDE= -I./include
-SRC=test/TestSuite.cpp 
-OBJ=Libtest
 
+# TODO: tidy and use wildcards
 test:
-	${CXX} ${CFLAGS} ${SRC} ${INCLUDE} -o ${OBJ} && ./${OBJ}
+	mkdir -p bin
+	${CXX} ${CFLAGS} test/memory/UniquePtrTest.cpp ${INCLUDE} -o bin/UniquePtrTest && ./bin/UniquePtrTest
+	${CXX} ${CFLAGS} test/container/ArrayListTest.cpp ${INCLUDE} -o bin/ArrayListTest && ./bin/ArrayListTest
+	${CXX} ${CFLAGS} test/container/LinkedListTest.cpp ${INCLUDE} -o bin/LinkedListTest && ./bin/LinkedListTest
 
 .PHONY: leak-check
 leak-check:
@@ -17,4 +19,4 @@ leak-check:
 #benchmark: TODO
 
 clean:
-	rm -f Libtest
+	rm -rf bin

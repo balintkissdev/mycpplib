@@ -29,24 +29,33 @@ class ArrayList : public List<T>
     bool add(const T element);
     void add(const int index, const T element);
     void clear();
-    bool contains(const T& element);
+    bool contains(const T& element) const;
     T get(const int index);
     T operator[](int index);
-    int indexOf(const T& element);
-    bool isEmpty();
-    int lastIndexOf(const T& element);
+    int indexOf(const T& element) const;
+    bool isEmpty() const;
+    int lastIndexOf(const T& element) const;
     T remove(const int index);
     bool remove(const T& element);
     T set(const int index, const T& element);
-    size_t size();
+    int size() const;
     void sort();
+    
+    /**
+     * Return portion of the list.
+     *
+     * @param from_index
+     * @param to_index
+     * @return
+     */
     ArrayList<T> subList(const int from_index, const int to_index);
+    
     T* toArray();
 
     /**
      * Query currently allocated capacity
      */
-    int capacity();
+    int capacity() const;
 
   private:
     int last_index_;
@@ -56,7 +65,7 @@ class ArrayList : public List<T>
     /**
      * Resizing helper
      */
-    void resize(size_t new_size);
+    void resize(int new_size);
 
     /**
      * Eraser for value types used in clear()
@@ -74,6 +83,20 @@ inline ArrayList<T>::~ArrayList()
 {
   clear();
   delete[] dynamic_array_;
+}
+
+template <typename T>
+inline ArrayList<T>::ArrayList(const ArrayList& other)
+{
+  //TODO
+#if 0
+  clear();
+  delete[] dynamic_array_;
+
+  last_index_ = other.last_index_;
+  capacity_ = other.capacity;
+  std::copy(other.dynamic_array_, other.dynamic_array_ + capacity_, dynamic_array_);
+#endif
 }
 
 template <typename T>
@@ -104,7 +127,7 @@ inline void ArrayList<T>::clear()
 }
 
 template <typename T>
-inline bool ArrayList<T>::contains(const T& element)
+inline bool ArrayList<T>::contains(const T& element) const
 {
   // TODO
   return false;
@@ -130,20 +153,20 @@ inline T ArrayList<T>::operator[](const int index)
 }
 
 template <typename T>
-inline int ArrayList<T>::indexOf(const T& element)
+inline int ArrayList<T>::indexOf(const T& element) const
 {
   // TODO
   return -1;
 }
 
 template <typename T>
-inline bool ArrayList<T>::isEmpty()
+inline bool ArrayList<T>::isEmpty() const
 {
   return -1 < last_index_;
 }
 
 template <typename T>
-inline int ArrayList<T>::lastIndexOf(const T& element)
+inline int ArrayList<T>::lastIndexOf(const T& element) const
 {
   // TODO
   return -1;
@@ -153,7 +176,7 @@ template <typename T>
 inline T ArrayList<T>::remove(const int index)
 {
   // TODO
-  return NullPtr;
+  return 0;
 }
 
 template <typename T>
@@ -167,11 +190,11 @@ template <typename T>
 inline T ArrayList<T>::set(const int index, const T& element)
 {
   // TODO
-  return NullPtr;
+  return 0;
 }
 
 template <typename T>
-inline size_t ArrayList<T>::size()
+inline int ArrayList<T>::size() const
 {
   return last_index_ + 1;
 }
@@ -190,20 +213,20 @@ inline ArrayList<T> subList(const int from_index, const int to_index)
 }
 
 template <typename T>
-inline T* toArray()
+inline T* ArrayList<T>::toArray()
 {
   // TODO
   return NullPtr;
 }
 
 template <typename T>
-inline int ArrayList<T>::capacity()
+inline int ArrayList<T>::capacity() const
 {
   return capacity_;
 }
 
 template <typename T>
-void ArrayList<T>::resize(size_t new_size)
+void ArrayList<T>::resize(int new_size)
 {
   // Reallocate
   capacity_ = new_size;
