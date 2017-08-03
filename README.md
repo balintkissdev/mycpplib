@@ -1,13 +1,15 @@
-# JLSTL: My STL implementation ("Java-like STL")
+# My C++ standard library implementation
 (work in progress)
 
 ## Description
-This is my take on recreating STL, with API somewhat inspired by Java API. The goal is to be able to compile with C++98 compiler and minimize the use of the C++ Standard Library. It's just a hobby for me. It currently includes
-* A unique pointer (UniquePtr.h)
-* A dynamic array (ArrayList.h)
-* and a barebone unit test framework (Assert.h)
+This is my take on recreating STL as a hobby and practice, with API somewhat inspired by Java. The goal is to be able to compile with C++98 compiler and minimize the use of the C++ Standard Library. It currently includes
+
+* A unique pointer
+* A dynamic array
+* and a barebone unit test framework
 
 Further planned components:
+
 * Singly- and doubly linked list
 * Stack
 * Iterator

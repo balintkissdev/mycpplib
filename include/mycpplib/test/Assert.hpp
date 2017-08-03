@@ -1,11 +1,11 @@
-#ifndef JLSTL_ASSERT_HPP_
-#define JLSTL_ASSERT_HPP_
+#ifndef _MYCPPLIB_ASSERT_HPP_
+#define _MYCPPLIB_ASSERT_HPP_
 
 #include <iostream>
 #include <cstdlib>
 #include <exception>
 
-namespace jlstl
+namespace mycpplib
 {
 
 /**
@@ -16,7 +16,7 @@ namespace Assert
   /**
    * Assertion error
    */
-  struct AssertionFailure : public std::exception
+  struct AssertionFailure : public std::exception // TODO: remove exceptions
   {
     const char* what() const throw()
     {
@@ -65,6 +65,6 @@ void Assert::assertEquals(const E& expected, const A& actual, const char* messag
   }
 }
 
-} // namespace jlstl
+} // namespace mycpplib
 
-#endif  // JLSTL_ASSERT_HPP_
+#endif  // _MYCPPLIB_ASSERT_HPP_

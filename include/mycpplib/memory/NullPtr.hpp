@@ -1,7 +1,7 @@
-#ifndef JLSTL_NULLPTR_HPP_
-#define JLSTL_NULLPTR_HPP_
+#ifndef _MYCPPLIB_NULLPTR_HPP_
+#define _MYCPPLIB_NULLPTR_HPP_
 
-namespace jlstl
+namespace mycpplib
 {
 
 /**
@@ -38,6 +38,6 @@ const class NullPtrType
 
 } NullPtr = {};
 
-} // namespace jlst
+} // namespace mycpplib
 
-#endif  // JLSTL_NULLPTR_HPP_
+#endif  // _MYCPPLIB_NULLPTR_HPP_

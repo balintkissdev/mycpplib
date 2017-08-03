@@ -1,18 +1,18 @@
 #include <cstddef>
 #include <string>
 
-#include <io/System.hpp>
-#include <test/Assert.hpp>
-#include <memory/UniquePtr.hpp>
+#include <mycpplib/io/System.hpp>
+#include <mycpplib/test/Assert.hpp>
+#include <mycpplib/memory/UniquePtr.hpp>
 
-using namespace jlstl::Assert;
+using namespace mycpplib::Assert;
 
 template <typename T>
 struct MyDeleter
 {
   void operator()(T* raw)
   {
-    jlstl::System::out::println("Trying out custom deleter object.");
+    mycpplib::System::out::println("Trying out custom deleter object.");
     delete raw;
   }
 };
@@ -20,13 +20,13 @@ struct MyDeleter
 template <typename T>
 void deleterFunction(T* raw)
 {
-  jlstl::System::out::println("Trying out custom deleter function.");
+  mycpplib::System::out::println("Trying out custom deleter function.");
   delete raw;
 }
 
 void testRelease()
 {
-  jlstl::UniquePtr<int> ptr(new int(100));
+  mycpplib::UniquePtr<int> ptr(new int(100));
 
   int* raw_ptr = ptr.release();
   assertEquals(static_cast<int*>(NULL), ptr.get()); // FIXME
@@ -37,7 +37,7 @@ void testRelease()
 
 void testReset()
 {
-  jlstl::UniquePtr<int> ptr;
+  mycpplib::UniquePtr<int> ptr;
   if (!ptr)
   {
     ptr.reset(new int(100));
@@ -47,21 +47,21 @@ void testReset()
 
 void testGet()
 {
-  jlstl::UniquePtr<int> ptr(new int(200));
+  mycpplib::UniquePtr<int> ptr(new int(200));
   int* raw_ptr = ptr.get();
   assertEquals(200, *raw_ptr);
 }
 
 void testDereference()
 {
-  jlstl::UniquePtr<int> ptr(new int(300));
+  mycpplib::UniquePtr<int> ptr(new int(300));
   assertEquals(300, *ptr);
 }
 
 void testStorageOverhead()
 {
   int* raw_ptr = new int(100);
-  jlstl::UniquePtr<int> ptr(new int(100));
+  mycpplib::UniquePtr<int> ptr(new int(100));
 
   assertEquals(sizeof(raw_ptr), sizeof(ptr), "UniquePtr has size overhead");
   delete raw_ptr;
@@ -70,11 +70,11 @@ void testStorageOverhead()
 void testCustomDeleter()
 {
   // Deleter object
-  jlstl::UniquePtr<int, MyDeleter<int> > ptr_with_deleter(new int(55));
+  mycpplib::UniquePtr<int, MyDeleter<int> > ptr_with_deleter(new int(55));
   assertEquals(55, *ptr_with_deleter);
 
   // Deleter function
-  jlstl::UniquePtr<std::string, void(*)(std::string*) > strptr_with_deleter(new std::string("word"), deleterFunction<std::string>);
+  mycpplib::UniquePtr<std::string, void(*)(std::string*) > strptr_with_deleter(new std::string("word"), deleterFunction<std::string>);
   assertEquals("word", *strptr_with_deleter);
 }
 

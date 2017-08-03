@@ -1,19 +1,20 @@
 .PHONY: test leak-check clean
 
-CFLAGS=-g -Wall -std=c++98
+CFLAGS=-g -Wall -Wpedantic -Werror -std=c++98
 INCLUDE= -I./include
 
 # TODO: tidy and use wildcards
 test:
 	mkdir -p bin
-	${CXX} ${CFLAGS} test/memory/UniquePtrTest.cpp ${INCLUDE} -o bin/UniquePtrTest && ./bin/UniquePtrTest
-	${CXX} ${CFLAGS} test/container/ArrayListTest.cpp ${INCLUDE} -o bin/ArrayListTest && ./bin/ArrayListTest
-	${CXX} ${CFLAGS} test/container/LinkedListTest.cpp ${INCLUDE} -o bin/LinkedListTest && ./bin/LinkedListTest
+	$(CXX) $(CFLAGS) test/memory/UniquePtrTest.cpp $(INCLUDE) -o bin/UniquePtrTest && ./bin/UniquePtrTest
+	$(CXX) $(CFLAGS) test/container/ArrayListTest.cpp $(INCLUDE) -o bin/ArrayListTest && ./bin/ArrayListTest
+	$(CXX) $(CFLAGS) test/container/LinkedListTest.cpp $(INCLUDE) -o bin/LinkedListTest && ./bin/LinkedListTest
+#	$(CXX) $(CFLAGS) test/io/SystemTest.cpp $(INCLUDE) -o bin/SystemTest.cpp && ./bin/SystemTest
 
 .PHONY: leak-check
 leak-check:
 	# TODO: check for valgrind
-	${CXX} ${CFLAGS} ${SRC} ${INCLUDE} -o ${OBJ} && valgrind --leak-check=full --show-leak-kinds=all ./${OBJ}
+	$(CXX) $(CFLAGS) $(SRC) $(INCLUDE) -o $(OBJ) && valgrind --leak-check=full --show-leak-kinds=all ./$(OBJ)
 
 #.PHONY: benchmark
 #benchmark: TODO

@@ -1,7 +1,7 @@
 #ifndef JLSTL_ITERATOR_HPP_
 #define JLSTL_ITERATOR_HPP_
 
-#include "../container/List.hpp"
+#include <jlstl/container/List.hpp>
 
 // FIXME: Header dependency hell problems
 // TODO: optimization

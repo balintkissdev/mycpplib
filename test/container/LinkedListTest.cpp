@@ -1,11 +1,11 @@
-#include <test/Assert.hpp>
-#include <container/LinkedList.hpp>
+#include <mycpplib/test/Assert.hpp>
+#include <mycpplib/container/LinkedList.hpp>
 
-using namespace jlstl::Assert;
+using namespace mycpplib::Assert;
 
 void testInsert()
 {
-  jlstl::LinkedList<int> list;
+  mycpplib::LinkedList<int> list;
 
   // Initial insert
   list.add(40);
@@ -14,7 +14,7 @@ void testInsert()
 
 void testClear()
 {
-  jlstl::LinkedList<int> list;
+  mycpplib::LinkedList<int> list;
 
   // Initial insert
   list.add(40);
@@ -27,15 +27,15 @@ void testClear()
 
 void testMultipleInsert()
 {
-  jlstl::LinkedList<int> list;
+  mycpplib::LinkedList<int> list;
   int samples[] = {87, 12, 33, 65, 77};
 
-  for (int i = 0; i < (sizeof(samples) / sizeof(samples[0])); ++i)
+  for (size_t i = 0; i < (sizeof(samples) / sizeof(samples[0])); ++i)
   {
     list.add(samples[i]);
   }
 
-  for (int i = 0; i < (sizeof(samples) / sizeof(samples[0])); ++i)
+  for (size_t i = 0; i < (sizeof(samples) / sizeof(samples[0])); ++i)
   {
     assertEquals(samples[i], list[i]);
   }

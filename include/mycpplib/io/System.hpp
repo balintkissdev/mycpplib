@@ -1,20 +1,20 @@
-#ifndef JLSTL_SYSTEM_HPP_
-#define JLSTL_SYSTEM_HPP_
+#ifndef _MYCPPLIB_SYSTEM_HPP_
+#define _MYCPPLIB_SYSTEM_HPP_
 
 #include <cstdio>
 
-namespace jlstl
+namespace mycpplib
 {
 namespace System
 {
 namespace out
 {
-  static void print(const char* str)
+  void print(const char* str)
   {
     printf("%s", str);
   }
 
-  static void println(const char* str)
+  void println(const char* str)
   {
     printf("%s\n", str);
   }
@@ -22,12 +22,12 @@ namespace out
 
 namespace err
 {
-  static void print(const char* str)
+  void print(const char* str)
   {
     fprintf(stderr, "%s", str);
   }
 
-  static void println(const char* str)
+  void println(const char* str)
   {
     fprintf(stderr, "%s\n", str);
   }
@@ -38,6 +38,6 @@ namespace in
 
 } // namespace in
 } // namespace System
-} // namespace jlstl
+} // namespace mycpplib
 
-#endif  // JLSTL_SYSTEM_HPP_
+#endif  // _MYCPPLIB_SYSTEM_HPP_

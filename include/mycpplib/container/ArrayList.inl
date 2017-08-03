@@ -1,83 +1,3 @@
-#ifndef JLSTL_ARRAY_LIST_HPP_
-#define JLSTL_ARRAY_LIST_HPP_
-
-#include <exception>
-
-#include "List.hpp"
-#include "../memory/NullPtr.hpp"
-
-namespace jlstl
-{
-// FIXME: can't hold unique_ptr yet
-// TODO: dynamic grow
-/**
- * A dynamic list, with automatically growing array under the hood.
- */
-template <typename T>
-class ArrayList : public List<T>
-{
-  public:
-    ArrayList(int capacity = 1000)
-      : last_index_(-1)
-      , capacity_(capacity)
-      , dynamic_array_(new T[capacity_])
-      {};
-    ArrayList(const ArrayList& other);
-    ArrayList& operator=(const ArrayList& rhs);
-    ~ArrayList();
-
-    bool add(const T element);
-    void add(const int index, const T element);
-    void clear();
-    bool contains(const T& element) const;
-    T get(const int index);
-    T operator[](int index);
-    int indexOf(const T& element) const;
-    bool isEmpty() const;
-    int lastIndexOf(const T& element) const;
-    T remove(const int index);
-    bool remove(const T& element);
-    T set(const int index, const T& element);
-    int size() const;
-    void sort();
-    
-    /**
-     * Return portion of the list.
-     *
-     * @param from_index
-     * @param to_index
-     * @return
-     */
-    ArrayList<T> subList(const int from_index, const int to_index);
-    
-    T* toArray();
-
-    /**
-     * Query currently allocated capacity
-     */
-    int capacity() const;
-
-  private:
-    int last_index_;
-    int capacity_;
-    T* dynamic_array_;
-
-    /**
-     * Resizing helper
-     */
-    void resize(int new_size);
-
-    /**
-     * Eraser for value types used in clear()
-     */
-    void erase(T& value);
-
-    /**
-     * Eraser for pointer type used in clear()
-     */
-    void erase(T*& ptr);
-};
-
 template <typename T>
 inline ArrayList<T>::~ArrayList()
 {
@@ -100,7 +20,7 @@ inline ArrayList<T>::ArrayList(const ArrayList& other)
 }
 
 template <typename T>
-inline bool ArrayList<T>::add(const T element)
+bool ArrayList<T>::add(const T element)
 {
   if (capacity_ <= size())
   {
@@ -111,13 +31,13 @@ inline bool ArrayList<T>::add(const T element)
 }
 
 template <typename T>
-inline void ArrayList<T>::add(const int index, const T element)
+void ArrayList<T>::add(const int index, const T element)
 {
   // TODO
 }
 
 template <typename T>
-inline void ArrayList<T>::clear()
+void ArrayList<T>::clear()
 {
   for (int i = 0; i < last_index_; ++i)
   {
@@ -127,14 +47,14 @@ inline void ArrayList<T>::clear()
 }
 
 template <typename T>
-inline bool ArrayList<T>::contains(const T& element) const
+bool ArrayList<T>::contains(const T& element) const
 {
   // TODO
   return false;
 }
 
 template <typename T>
-inline T ArrayList<T>::get(const int index)
+T ArrayList<T>::get(const int index)
 {
   if (-1 < index && index <= last_index_)
   {
@@ -253,7 +173,3 @@ inline void ArrayList<T>::erase(T*& ptr)
   delete ptr;
   ptr = NullPtr;
 }
-
-} // namespace jlstl
-
-#endif  // JLSTL_ARRAY_LIST_HPP_

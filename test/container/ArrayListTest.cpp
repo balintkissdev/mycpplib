@@ -1,12 +1,12 @@
-#include <test/Assert.hpp>
-#include <memory/UniquePtr.hpp>
-#include <container/ArrayList.hpp>
+#include <mycpplib/test/Assert.hpp>
+#include <mycpplib/memory/UniquePtr.hpp>
+#include <mycpplib/container/ArrayList.hpp>
 
-using namespace jlstl::Assert;
+using namespace mycpplib::Assert;
 
 void testArrayList()
 {
-  jlstl::ArrayList<int> list(5);
+  mycpplib::ArrayList<int> list(5);
   assertEquals(0, list.size());
   list.add(35);
   assertEquals(35, list[0]);
@@ -25,8 +25,7 @@ void testArrayList()
   list.clear();
   assertEquals(0, list.size());
 
-  jlstl::UniquePtr< jlstl::List<int> > array_list(new jlstl::ArrayList<int>());
-  // UniquePtr< List<int> > array_list = makeUnique<ArrayList <int> >();  // FIXME: doesn't support polymorphism yet
+  mycpplib::UniquePtr< mycpplib::ArrayList<int> > array_list(new mycpplib::ArrayList<int>());
   array_list->add(2);
   array_list->add(34);
 
