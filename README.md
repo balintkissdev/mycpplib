@@ -1,5 +1,4 @@
-# My C++ standard library implementation
-(work in progress)
+**This is just an old practice project from the time when I was transitioning from Java to C++.**
 
 ## Description
 This is my take on recreating STL as a hobby and practice, with API somewhat inspired by Java. The goal is to be able to compile with C++98 compiler and minimize the use of the C++ Standard Library. It currently includes
